@@ -7,6 +7,7 @@ function [x, v] = smdanalytical(m,c,k,f,ic)
 %   m    = Mass
 %   c    = Damping constant
 %   k    = Spring constant
+%   f    = Force equation (Symbolic)
 %   ic   = Initial conditions (Initial position and velocity)
 % output:
 %   x    = Equation for position

@@ -17,6 +17,14 @@ x0 = 10e-2;     % [m]
 v0 = 3;         % [m/s]
 ic = [x0 v0];
 
+% Analyze the system
+[d, wN] = smdanalyze(m,c,k,ic);
+fprintf('Analyzing the spring-mass-damper system\n')
+fprintf('---------------------------------------\n')
+fprintf('The system is %s.\n',d)
+fprintf('Natural frequency: %d\n',wN)
+
+% Solve analytically and plot
 [x, v] = smdanalytical(m,c,k,f,ic);
 
 t = 0:0.1:4;
@@ -29,8 +37,8 @@ plot(t,subs(v,t),'DisplayName','Analytical')
 ylabel('Velocity')
 xlabel('Time')
 
-% Forcing function (Anonymous)
-f = @(t) sin(t)+cos(t);
+% Solve numerically and plot
+f = @(t) sin(t)+cos(t); % Forcing function (Anonymous)
 [x, v] = smdnumerical(m,c,k,f,ic,t);
 yyaxis left
 hold on
@@ -39,3 +47,4 @@ plot(t,x,'o','DisplayName','Numerical')
 yyaxis right
 hold on
 plot(t,v,'o','DisplayName','Numerical')
+legend show
